@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="vedio.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+     <!-- <link rel="stylesheet" href="https://www.youtube.com/watch?v=stDduNNhB5o"> -->
+    <div class="joks">
+        <h1>Random Joks</h1>
+        <p id="random_joke"></p>
+        <button id="click_me">click to genaret random joke</button>
+    </div>
+</body>
+<script>
+    // const API = fetch()
+    // console.log(API);
+    // const fatch = fetch("https://covid-19-data.p.rapidapi.com/country/code?format=json&code=it")
+    // .then()
+    // const promis = new Promise((resolve, reject) => {
+    //     const obj = {
+    //         name : "Suman Kayal",
+    //         "nick name" : "SK"
+    //     }
+    //     const test = true
+    //     if (test) {
+    //         resolve(obj);
+    //     } else {
+    //         reject("Not Found Data")
+    //     }
+    // })
+
+    // promis.then((object) => {
+    //     const name = object.name;
+    //     console.log(object);
+    //     console.log(name);
+    //     return object["nick name"]
+    // }).then((user) => {
+    //     console.log(user);
+    // })
+
+    // async function API() {
+    //     const app = await fetch("https://official-joke-api.appspot.com/random_joke")
+    //     const data = await app.json()
+    //     console.log(data);
+    // }
+    // API()
+    // console.log("Hii Engineers!");
+    const p = document.getElementById('random_joke')
+    const btn = document.getElementById('click_me')
+    // document.addEventListener('DOMContentLoded', API)
+    // document.addEventListener('click', () => {
+
+    // })
+    //  p.innerHTML = "sky"
+    // btn.addEventListener('click', (event) => {
+    //     event.preventDefault()
+    //     p.innerHTML = "sky"
+    // })
+    // let curet = 'a'
+    // var a = "hello";
+
+    const API = () => {
+        p.classList.remove("fade");
+        fetch("https://official-joke-api.appspot.com/random_joke")
+            .then((data) => {
+                return data.json()
+            }).then((appData) => {
+                // console.log(appData);
+                const data = appData.setup
+                //  p.innerHTML = data
+                p.textContent = data
+                p.classList.add("fade");
+            }).catch((error) => {
+                console.log(`Error is => ${error} 😴`);
+
+            })
+    }
+    btn.addEventListener('click', API)
+    API()
+
+</script>
+
+</html>
